@@ -26,9 +26,7 @@ class ResNetDUC(nn.Module):
     # the size of image should be multiple of 8
     def __init__(self, num_classes, pretrained=True):
         super(ResNetDUC, self).__init__()
-        resnet = models.resnet152()
-        if pretrained:
-            resnet.load_state_dict(torch.load(res152_path))
+        resnet = models.resnet152(pretrained)
         self.layer0 = nn.Sequential(resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool)
         self.layer1 = resnet.layer1
         self.layer2 = resnet.layer2
@@ -66,9 +64,7 @@ class ResNetDUCHDC(nn.Module):
     # the size of image should be multiple of 8
     def __init__(self, num_classes, pretrained=True):
         super(ResNetDUCHDC, self).__init__()
-        resnet = models.resnet152()
-        if pretrained:
-            resnet.load_state_dict(torch.load(res152_path))
+        resnet = models.resnet152(pretrained)
         self.layer0 = nn.Sequential(resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool)
         self.layer1 = resnet.layer1
         self.layer2 = resnet.layer2
